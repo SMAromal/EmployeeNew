@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("./connection"); // Import the connection file
-const Post = require("./model"); // Import the model file
+const mongoose = require("./connection"); 
+const Post = require("./model"); 
 const { model } = require("mongoose");
 
 const app = express();
-let PORT = 3001; // Default port
+let PORT = 3001; 
 
 app.use(express.json());
 app.use(cors());
@@ -15,7 +15,7 @@ app.post("/add", async (req, res) => {
   try {
     const { EmpName, designation,empId, img_url } = req.body;
 
-    // Create a new post entry
+    
     const newPost = new Post({
       EmpName,
       designation,
@@ -23,7 +23,7 @@ app.post("/add", async (req, res) => {
       img_url,
     });
 
-    // Save to the database
+    
     await newPost.save();
 
     res.status(201).send({ message: "Post entry added successfully" });
@@ -55,13 +55,13 @@ app.delete('/del/:id',async (req,res)=>{
   }
 })
 
-// PUT API to update a blog entry
+//update
 app.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { EmpName, designation,empId, img_url } = req.body;
 
-    // Find the post by ID and update it
+    
     const updatedPost = await Post.findByIdAndUpdate(id, { EmpName, designation,empId, img_url }, { new: true });
 
     if (!updatedPost) {

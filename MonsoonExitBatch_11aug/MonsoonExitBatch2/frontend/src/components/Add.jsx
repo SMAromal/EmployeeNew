@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Add = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isUpdate = location.state && location.state.data; // Check if we're in update mode
+  const isUpdate = location.state && location.state.data; // checking
   const [inputs, setInputs] = useState({
     EmpName: "",
     designation: "",
